@@ -11,15 +11,17 @@ export class AdminService {
                 organization: {
                     select: {
                         name: true,
+                        type: true,
+                        location: true,
                     },
                 },
             },
         });
     }
     static async getSystemStats() {
-        const [userCount, orgCount, paymentTotal] = await Promise.all([
+        const [userCount, ministryCount, paymentTotal, countyBreakdown] = await Promise.all([
             prisma.user.count(),
-            prisma.organization.count(),
+            prisma.organization.count({ where: { type: 'MINISTRY' } }),
             prisma.payment.aggregate({
                 _sum: {
                     amount: true,
@@ -28,11 +30,22 @@ export class AdminService {
                     status: 'COMPLETED',
                 },
             }),
+            prisma.organization.groupBy({
+                by: ['location'],
+                _count: {
+                    id: true,
+                },
+                where: {
+                    location: { not: null }
+                }
+            })
         ]);
         return {
             userCount,
-            orgCount,
+            ministryCount,
             revenueTotal: paymentTotal._sum.amount || 0,
+            countyCoverage: countyBreakdown.length,
+            countyStats: countyBreakdown
         };
     }
 }

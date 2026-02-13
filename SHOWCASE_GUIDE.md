@@ -32,7 +32,20 @@ I designed and implemented **NDWIS (National Digital Work & Intelligence System)
 
 ---
 
-## 🛠 Features to Highlight in Showcase
+## � Railway Deployment (Full-Stack Live)
+
+The project is now a configured Monorepo, making it easy to deploy both the API and Web apps on [Railway.app](https://railway.app):
+
+1. **Login to Railway** and click **"New Project"**.
+2. Choose **"Deploy from GitHub repo"** and select your `ndwis` repository.
+3. **Deploy Two Services**:
+    * **Service 1 (API)**: Set the **Root Directory** to `apps/api`.
+    * **Service 2 (Web)**: Set the **Root Directory** to `apps/web`.
+4. Railway will automatically detect the settings and provide public URLs for each.
+
+---
+
+## �🛠 Features to Highlight in Showcase
 
 1. **The "National Command Center" UI**: Mention the glassmorphism and Cyber Intelligence aesthetics.
 2. **Predictive Charts**: Show how the AI "Inference Engine" monitors model accuracy and latency.
