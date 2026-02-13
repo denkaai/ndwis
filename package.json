@@ -1,0 +1,14 @@
+{
+    "name": "ndwis-monorepo",
+    "version": "1.0.0",
+    "private": true,
+    "workspaces": [
+        "apps/*"
+    ],
+    "scripts": {
+        "web:dev": "npm run dev -w apps/web",
+        "api:dev": "npm run dev -w apps/api",
+        "build": "npm run build --workspaces",
+        "start": "npm run start --workspaces"
+    }
+}
