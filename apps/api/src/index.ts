@@ -7,6 +7,10 @@ import adminRoutes from './routes/admin.routes.js';
 const app = express();
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.json({ status: "NDWIS Intelligence API Active", version: "2.5" });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/orgs', orgRoutes);
 app.use('/api/mpesa', mpesaRoutes);
